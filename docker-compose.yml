@@ -12,7 +12,7 @@ services:
     restart: always  
   student-api:
     container_name: student-api
-    build: ./apps/student-api
+    build: ../apps/student-api
     restart: always
     ports:
       - "10010:8080"
