@@ -1,0 +1,22 @@
+version: '3'
+services:
+  postgres-db:
+    image: "postgres"
+    container_name: postgres-db
+    env_file:
+      - database.env
+    volumes:
+      - database_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    restart: always  
+  student-api:
+    container_name: student-api
+    build: ./apps/student-api
+    restart: always
+    ports:
+      - "10010:8080"
+    depends_on:
+      - postgres-db
+volumes:
+  database_data:
